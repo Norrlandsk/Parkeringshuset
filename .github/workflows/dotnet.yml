@@ -70,7 +70,7 @@ jobs:
             body: Auto-created Pull Request
             branch: staging
             base: main
-            labels: automerge
+            labels: automerge 
 
 # solution for the release job: https://stackoverflow.com/questions/60963759/use-github-actions-to-create-a-tag-but-not-a-release
   release:
