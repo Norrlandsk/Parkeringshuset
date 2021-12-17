@@ -14,6 +14,7 @@ namespace Parkeringshuset.Views
         public static void RunMainMenu()
         {
             bool keepGoing = true;
+
             string pType = "";
 
             ParkingMeterLogic pML = new();
