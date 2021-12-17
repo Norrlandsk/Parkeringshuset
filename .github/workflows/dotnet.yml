@@ -5,6 +5,22 @@ on:
     branches: [ main, development, staging ]
     tags:
       - '*'
+    types:
+    - labeled
+    - unlabeled
+    - synchronize
+    - opened
+    - edited
+    - ready_for_review
+    - reopened
+    - unlocked
+  pull_request_review:
+    types:
+      - submitted
+  check_suite:
+    types:
+      - completed
+  status: {}
 
 jobs:
 
@@ -71,7 +87,17 @@ jobs:
             body: Auto-created Pull Request
             branch: ${{ github.ref }}
             base: main
-            labels: automerge        
+            labels: automerge 
+
+  automerge:
+      needs: create_pull_request
+      if: github.base_ref == 'staging'
+      runs-on: ubuntu-latest
+      steps:
+        - name: automerge
+          uses: "pascalgn/automerge-action@v0.14.3"
+          env:
+            GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         
 
 # solution for the release job: https://stackoverflow.com/questions/60963759/use-github-actions-to-create-a-tag-but-not-a-release
