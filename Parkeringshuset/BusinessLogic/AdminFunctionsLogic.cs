@@ -14,18 +14,24 @@
 
     public class AdminFunctionsLogic
     {
-        AdminController Controller = new();
+        private AdminController Controller = new();
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
         public PType ParkingSportsPopularity(Admin admin)
         {
             return new PType();
         }
+
         public int SoldTicketsBetweenSpecificDates(Admin admin, DateTime from, DateTime to)
         {
             var tickets = Controller.GetTicketForDate(from, to);
             return tickets.Count;
-
         }
+
         public void Revenue(DateTime from, DateTime to)
         {
             var tickets = Controller.GetTicketForDate(from, to);
@@ -42,12 +48,12 @@
             }
 
             SendEmail.SendWithBlazor(totalIncome, counterForNotPaidBills, "Revenue", from, to);
-
         }
+
         public void Revenue(Admin admin, DateTime year)
         {
-
         }
+
         public Vehicle BestCustomer(Admin admin)
         {
             return new Vehicle();
@@ -55,8 +61,6 @@
 
         public void comprehensiveReport(Admin admin)
         {
-
         }
-
     }
 }
