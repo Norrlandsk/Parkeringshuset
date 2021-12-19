@@ -1,0 +1,21 @@
+  name: createPullRequest
+  
+  on:
+  workflow_run:
+    workflows: .NET
+  
+  create_pull_request:
+      needs: buildMatrixStaging
+      runs-on: ubuntu-latest
+      steps: 
+        - uses: actions/checkout@v2
+        - name: Create Pull Request
+          uses: peter-evans/create-pull-request@v3.10.1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            commit-message: Auto Pull Request
+            title: Your desired title
+            body: Auto-created Pull Request
+            branch: ${{ github.ref }}
+            base: main
+            labels: automerge 
